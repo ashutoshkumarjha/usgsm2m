@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "usgsm2m"
+version = "0.10.0"
+description = "Search and download Landsat scenes from USGSM2M"
+authors = ["Ashutosh Kumar Jha <jha.ashutosh@gamil.com>"]
+maintainers = ["Ashutosh Kumar Jha <jha.ashutosh@gamil.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/ashutoshkumarjha/usgsm2m"
+repository = "https://github.com/ashutoshkumarjha/usgsm2m"
+documentation = "https://github.com/ashutoshkumarjha/usgsm2m"
+keywords = [
+    "earth observation",
+    "remote sesing",
+    "m2m data download",
+    "satellite imagery",
+    "landsat",
+    "sentinel",
+    "usgs m2m"
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+requests = "^2.20"
+tqdm = "^4.58"
+click = "^7.1"
+shapely = "^1.7"
+python-dateutil = "^2.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2"
+pytest-cov = "^2.11"
+
+[tool.poetry.urls]
+issues = "https://github.com/ashutoshkumarjha/usgsm2m/issues"
+
+[tool.poetry.scripts]
+usgsm2m = "usgsm2m.cli:cli"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+[tool.black]
+line-length = 88
