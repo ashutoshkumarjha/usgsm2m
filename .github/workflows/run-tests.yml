@@ -1,0 +1,38 @@
+name: Run tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Code checkout
+      uses: actions/checkout@v2
+
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Install Poetry
+      run: pip install poetry
+
+    - name: Install dependencies
+      run: poetry install
+
+    - name: Run pytest
+      run: poetry run pytest tests/
+
+    - name: Test CLI
+      run: |
+        poetry run usgsm2m --help
+        poetry run usgsm2m download --help
+
+    - name: Generate coverage
+      run: poetry run pytest --cov=./usgsm2m --cov-report=xml tests/
+
+    - name: Upload coverage
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
