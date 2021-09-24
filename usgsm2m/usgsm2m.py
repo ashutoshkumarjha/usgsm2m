@@ -141,7 +141,7 @@ class USGSM2M(object):
                 local_filename = rh.headers["Content-Disposition"].split("=")[-1]
                 local_filename = local_filename.replace('"', "")
                 if local_filename.endswith('tar'):
-                    local_filename=local_filename+".gz"
+                    local_filename=local_filename#+".gz"
                 local_filename = os.path.join(output_dir, local_filename)
                 resume_byte_pos=self.checkFileSize(local_filename)
                 initial_pos = resume_byte_pos if resume_byte_pos else 0
@@ -183,7 +183,7 @@ class USGSM2M(object):
                     total=file_size, unit_scale=True, unit="B", unit_divisor=1024
                 ) as pbar:
                     local_filename = r.headers["Content-Disposition"].split("=")[-1]
-                    local_filename = local_filename.replace('"', "")+".gz"
+                    local_filename = local_filename.replace('"', "")#+".gz"
                     local_filename = os.path.join(output_dir, local_filename)
                     if skip:
                         return local_filename

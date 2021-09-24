@@ -31,15 +31,19 @@ The following datasets are supported based on only entityid provided. For the di
 Searching for Landsat 5 TM scenes that contains the location (12.53, -1.53) acquired during the year 1995.Set the 
 
 ```
-usgsm2m search --dataset LANDSAT_TM_C1 --location 30.32 78.03 \
-    --start 1995-01-01 --end 1995-12-31
+usgsm2m search --dataset LANDSAT_ETM_C2_L2 --location 30.32 78.03 --clouds 5  --start 2005-01-01 --end 2005-12-31
 ```
 
 Search for Landsat 7 ETM scenes in Brussels with less than 5% of clouds. Save the returned results in a `.csv` file.
 
 ```
-usgsm2m search --dataset LANDSAT_ETM_C1 \
-    --location 50.83 4.38 --clouds 5 > results.csv
+usgsm2m search --dataset LANDSAT_ETM_C2_L2 --location 30.32 78.03 --clouds 5  --start 2005-01-01 --end 2005-12-31 > result.csv
+```
+
+Downloading three Landsat scenes from different the entity file containing **display id** the current directory.
+
+```
+usgsm2m downloadbulk --entityfile result.csv 
 ```
 
 Downloading three Landsat scenes from different datasets in the current directory.
@@ -48,11 +52,6 @@ Downloading three Landsat scenes from different datasets in the current director
 usgsm2m download LT51960471995178MPS00 LC80390222013076EDC00 LC82150682015350LGN01
 ```
 
-Downloading three Landsat scenes from different the entity file containing **display id** in ./downloadDir
-
-```
-downloadbulk --entityfile 143042-cloud-5.csv --output ./downloadDir
-```
 To use the package, Earth Explorer credentials are required ([registration](https://ers.cr.usgs.gov/register)).
 
 # Installation
